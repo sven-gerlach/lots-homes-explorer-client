@@ -7,7 +7,7 @@ import "./navbar.scss"
 
 
 /**
- * Navbar with clickable links
+ * Navbar with clickable links to homes and lots
  * @param props
  * @return {JSX.Element}
  * @constructor
