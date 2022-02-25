@@ -1,5 +1,12 @@
+// import frameworks and libraries
 import React from "react";
 import {Routes, Route, Outlet} from "react-router-dom";
+
+// import components
+import Navbar from "./components/navbar/navbar";
+import Homes from "./components/homes/homes";
+
+// import styles
 import './App.css';
 
 
@@ -10,16 +17,17 @@ import './App.css';
  */
 export default function App() {
   return (
-    <Routes>
-      <Route path={"/"} element={<div><h1>Side bar</h1><Outlet /></div>}>
-        <Route path={"homes"} element={<div><h1>Homes</h1><Outlet /></div>}>
-          <Route path={""} element={<p>Home Modal</p>} />
+    <>
+      <Navbar />
+      <Routes>
+        <Route path={"*"} element={<Homes />}>
+          <Route path={"*"} element={<p>Home Modal</p>} />
         </Route>
         <Route path={"lots"} element={<div><h1>Lots</h1><Outlet /></div>}>
           <Route path={""} element={<p>Lot Modal</p>} />
         </Route>
         <Route path={"*"} element={<p>Oops...are you sure you are using the correct url?</p>} />
-      </Route>
-    </Routes>
+      </Routes>
+    </>
   );
 }

@@ -1,0 +1,13 @@
+#root {
+  display: grid;
+  grid-template-areas:
+    "navbar main-section";
+}
+
+.navbar-container {
+  grid-area: navbar;
+}
+
+.main-section {
+  grid-area: main-section;
+}
