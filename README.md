@@ -47,9 +47,9 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 - [ ] build Modal (HOC)
 - [ ] Integrate Redux and store component state centrally
 
-## Complications
+## Difficulties and complications
 1) The new react-router-dom (^6.0) has a slightly different logic behind using routes. My IDE (Webstorm) appears to have used an outdated (pre 6.0) and local TypeScript library instead of pointing to the local current one inside node-modules. With some research the answers to this [stackoverflow](https://stackoverflow.com/questions/70031839/cannot-resolve-symbol-routes) question provided a resolution.
-2) 
+2) Without specifying the react-router version, I installed, unbeknownst to me, a newer version ^6. Thus far, I had only worked with ^v5. The syntax has changed a fair bit, so this took some reading of the documentation to get used to it and understand the new approach.
 
 ## Stretch Goals
 - [ ] Persist saved homes and lots in local storage

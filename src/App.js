@@ -8,7 +8,7 @@ import Homes from "./components/homes/homes";
 import NoMatch from "./components/noMatch/noMatch";
 
 // import styles
-import './App.css';
+import './App.scss';
 
 
 /**
