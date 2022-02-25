@@ -1,5 +1,8 @@
 # Lots Homes Explorer
 
+## TLDR
+[to come]
+
 ## User Stories
 - [ ] View and browse available home plans and lots
 - [ ] Like / store selected home plans and lots
@@ -43,6 +46,10 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 - [ ] build Homes and Lots views (HOC)
 - [ ] build Modal (HOC)
 - [ ] Integrate Redux and store component state centrally
+
+## Complications
+1) The new react-router-dom (^6.0) has a slightly different logic behind using routes. My IDE (Webstorm) appears to have used an outdated (pre 6.0) and local TypeScript library instead of pointing to the local current one inside node-modules. With some research the answers to this [stackoverflow](https://stackoverflow.com/questions/70031839/cannot-resolve-symbol-routes) question provided a resolution.
+2) 
 
 ## Stretch Goals
 - [ ] Persist saved homes and lots in local storage
