@@ -87,9 +87,8 @@ export default function ShowInventory(props) {
   }
 
   /**
-   * O(n) time | O(n) space where n = total number of assets returned by the API
-   * the filter method iterates over n elements but retrieving the asset id and checking if that id is in the hash-table
-   * are constant time operations.
+   * O(n) time | O(n) space where n = total number of assets returned by the API The filter method iterates over n
+   * elements but retrieving the asset id and checking if that id is in the hash-table are constant time operations.
    * The current linear time complexity could be improved to O(log n) if we employed a binary search or a quick search
    * but that would require a sorted array by IDs. Whilst both search methods are done in place the space complexity
    * for a filter would not change as we would still need to create a new sub-array.
@@ -99,7 +98,12 @@ export default function ShowInventory(props) {
    */
   const getRelevantAssets = () => {
     if (isFavouritesDisplayed) {
-      return assets?.filter(asset => asset[getIdKey()] in favourites[assetType])
+      return assets?.filter(asset => {
+        const assetId = asset[getIdKey()]
+        const assetTypeFavourites = favourites[assetType]
+        // assetId must be a key in favourites[assetType] and the value of that key must evaluate to true
+        return assetTypeFavourites[assetId]
+      })
     }
     return assets
   }
