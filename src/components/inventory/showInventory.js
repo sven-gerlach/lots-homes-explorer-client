@@ -20,8 +20,12 @@ import API from "../../services/api";
 export default function ShowInventory(props) {
   const [assetType, setAssetType] = useState(null)
   const [assets, setAssets] = useState(null)
-  const [favourites, setFavourites] = useState({})
+  const [favourites, setFavourites] = useState({homes: {}, lots: {}})
   const location = useLocation()
+
+  // useEffect(() => {
+  //   console.log(favourites)
+  // }, [favourites])
 
   /**
    * get the asset type currently displayed from the browser url
@@ -70,6 +74,7 @@ export default function ShowInventory(props) {
               assetType={assetType}
               asset={asset}
               favourites={favourites}
+              setFavourites={setFavourites}
             />)
         })
         }

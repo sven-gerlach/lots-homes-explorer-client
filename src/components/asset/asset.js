@@ -1,5 +1,5 @@
 // import libraries and frameworks
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 // import components
 import AssetStats from "./assetStats/assetStats";
@@ -14,9 +14,25 @@ import redHeart from "../../assets/heart-red.png"
  * @param assetType
  * @param asset
  * @param favourites
+ * @param setFavourites
  * @constructor
  */
-export default function Asset({assetType, asset, favourites}) {
+export default function Asset({assetType, asset, favourites, setFavourites}) {
+  const [imageSource, setImageSource] = useState("")
+
+  /**
+   * Every time the favourites or the asset state changes, update the image source used for the favourites / heart
+   * emoticon
+   */
+  useEffect(() => {
+    setImageSource(getImgSrc())
+    // eslint-disable-next-line
+  }, [favourites, asset])
+
+  /**
+   * Returns the string for the alt attribute associated with the asset img
+   * @return {String}
+   */
   const getAltImgText = () => {
     // eslint-disable-next-line
     switch (assetType) {
@@ -27,7 +43,12 @@ export default function Asset({assetType, asset, favourites}) {
     }
   }
 
-  const getImgSrc = () => {
+  /**
+   * Since the idKey inside the API response objects is different between homes and lots, this function returns the
+   * correct key needed to access the asset id
+   * @return {string}
+   */
+  const getIdKey = () => {
     let idKey = ""
     // eslint-disable-next-line
     switch (assetType) {
@@ -37,10 +58,43 @@ export default function Asset({assetType, asset, favourites}) {
       case "lots":
         idKey = "lotId"
     }
+    return idKey
+  }
 
-    return asset[idKey] in favourites
+  /**
+   * Return the image src based in the current asset's id key and whether the current asset is a favourite item
+   * @return {*}
+   */
+  const getImgSrc = () => {
+    const idKey = getIdKey()
+    return favourites[assetType][asset[idKey]] === true
       ? redHeart
       : blackHeart
+  }
+
+  /**
+   * Updated state in the favourites object to either true or false.
+   * @param e
+   */
+  const handleLike = (e) => {
+    const idKey = getIdKey()
+    // current asset id can be accessed with the correct asset id key
+    const currentAssetId = asset[idKey]
+    // extract the nested object from the favourites object that is associated with the current asset's class (homes or
+    // lots)
+    const currentAssetClassFavourites = favourites[assetType]
+    setFavourites(prevState => {
+      if (currentAssetClassFavourites.hasOwnProperty(currentAssetId)) {
+        const updatedCurrentAssetClassFavourites = {
+          ...currentAssetClassFavourites,
+          [currentAssetId]: !currentAssetClassFavourites[currentAssetId]
+        }
+        return {...prevState, [assetType]: updatedCurrentAssetClassFavourites}
+      }
+      else {
+        return {...prevState, [assetType]: {...currentAssetClassFavourites, [currentAssetId]: true}}
+      }
+    })
   }
 
   return (
@@ -48,7 +102,10 @@ export default function Asset({assetType, asset, favourites}) {
       <section className={"image-container"}>
         <img src={asset.image} alt={getAltImgText()} />
         <div className={"favourite-icon-container"}>
-          <img src={getImgSrc()} alt={"a heart"} />
+          <img
+            src={imageSource} alt={"heart"}
+            onClick={handleLike}
+          />
         </div>
       </section>
       <section className={"asset-description-container"}>
