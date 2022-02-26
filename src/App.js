@@ -1,11 +1,11 @@
 // import frameworks and libraries
 import React, {useEffect} from "react";
-import {Routes, Route, Outlet, useNavigate} from "react-router-dom";
+import {Routes, Route, useNavigate} from "react-router-dom";
 
 // import components
 import Navbar from "./components/navbar/navbar";
-import Homes from "./components/homes/homes";
 import NoMatch from "./components/noMatch/noMatch";
+import ShowInventory from "./components/inventory/showInventory"
 
 // import styles
 import './App.scss';
@@ -19,6 +19,7 @@ import './App.scss';
 export default function App() {
   // due to the absence of a landing page, redirect user to the /homes route when user lands on root path
   const navigate = useNavigate()
+  // redirect as a side effect after the first render only
   useEffect(() => {
     navigate("/homes")
     // disabling next line because this function is supposed to run only once after the first rendering
@@ -26,16 +27,14 @@ export default function App() {
   }, [])
 
   return (
+
     <>
       <Navbar />
       <Routes>
-        <Route path={"/"} element={<Homes />}>
+        <Route path={"/:assetType"} element={<ShowInventory />}>
           <Route path={""} element={<p>Home Modal</p>} />
         </Route>
-        <Route path={"/homes"} element={<Homes />}>
-          <Route path={""} element={<p>Home Modal</p>} />
-        </Route>
-        <Route path={"lots"} element={<div><h1>Lots</h1><Outlet /></div>}>
+        <Route path={"/:assetType"} element={<ShowInventory />}>
           <Route path={""} element={<p>Lot Modal</p>} />
         </Route>
         <Route path={"*"} element={<NoMatch />} />

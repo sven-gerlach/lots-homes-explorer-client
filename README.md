@@ -42,9 +42,9 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 ## ToDo
 - [x] set-out project management path, including routes, views, and components
 - [ ] build Navbar component
-- [ ] build Home and Lot component (HOC)
-- [ ] build Homes and Lots views (HOC)
-- [ ] build Modal (HOC)
+- [ ] build Home and Lot component
+- [ ] build Homes and Lots views
+- [ ] build Modal
 - [ ] Integrate Redux and store component state centrally
 
 ## Difficulties and complications

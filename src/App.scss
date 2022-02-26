@@ -9,6 +9,7 @@
   @media (max-width: $layout-breakpoint-small) {
     display: block;
   }
+
   @media (min-width: $layout-breakpoint-small) and (max-width: $layout-breakpoint-medium) {
     grid-template-columns: 1fr 3fr;
   }
