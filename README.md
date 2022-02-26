@@ -51,10 +51,9 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 1) The new react-router-dom (^6.0) has a slightly different logic behind using routes. My IDE (Webstorm) appears to have used an outdated (pre 6.0) and local TypeScript library instead of pointing to the local current one inside node-modules. With some research the answers to this [stackoverflow](https://stackoverflow.com/questions/70031839/cannot-resolve-symbol-routes) question provided a resolution.
 2) Without specifying the react-router version, I installed, unbeknownst to me, a newer version ^6. Thus far, I had only worked with ^v5. The syntax has changed a fair bit, so this took some reading of the documentation to get used to it and understand the new approach.
 
-## Stretch Goals
+## Stretch Goals and Next Steps
 - [ ] Persist saved homes and lots in local storage
 - [ ] Make lots and homes linkable by adding query strings to URL
 - [ ] Improve styling of the page
-
-## Next Steps
+- [ ] implement custom success and error messaging (e.g. failure to retrieve a response from the API)
 - [ ] Most consumers' pain-point is not understanding whether a land-plot is cheap or expensive (nobody wants to pay more than they have to). Integrating market pricing / valuation data into the Lot component could alleviate information asymmetry. Perhaps there is a Zoopla API or another pre-existing vendor that utilises public transaction data? This could be used to give users a better idea of how cheap / expensive a particular land plot is in relation to historic local or national data.
