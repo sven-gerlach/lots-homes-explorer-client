@@ -1,4 +1,8 @@
+// import libraries and frameworks
 import React from "react";
+
+// import styles
+import "./assetStats.scss"
 
 
 /**

@@ -5,7 +5,10 @@ import {useLocation } from "react-router-dom";
 // import components
 import Asset from "../asset/asset";
 
-// import styling
+// import styles
+import "./showInventory.scss"
+
+// import utils
 import API from "../../services/api";
 
 
@@ -22,10 +25,6 @@ export default function ShowInventory(props) {
   const [assets, setAssets] = useState(null)
   const [favourites, setFavourites] = useState({homes: {}, lots: {}})
   const location = useLocation()
-
-  // useEffect(() => {
-  //   console.log(favourites)
-  // }, [favourites])
 
   /**
    * get the asset type currently displayed from the browser url
@@ -65,20 +64,25 @@ export default function ShowInventory(props) {
 
   return (
     <>
-      <div className={"assets-container"}>
-        <button type={"button"} >Show Saved {assetType && getCapitalisedAssetType()}</button>
-        {assets?.map((asset, key) => {
-          return (
-            <Asset
-              key={key}
-              assetType={assetType}
-              asset={asset}
-              favourites={favourites}
-              setFavourites={setFavourites}
-            />)
-        })
-        }
-      </div>
+      <section className={"main-section"}>
+        <div className={"assets-container"}>
+          <div className={"button-container"}>
+            <button type={"button"} >Show Saved {assetType && getCapitalisedAssetType()}</button>
+          </div>
+          <div className={"break-line"}></div>
+          {assets?.map((asset, key) => {
+            return (
+              <Asset
+                key={key}
+                assetType={assetType}
+                asset={asset}
+                favourites={favourites}
+                setFavourites={setFavourites}
+              />)
+          })
+          }
+        </div>
+      </section>
     </>
   )
 }

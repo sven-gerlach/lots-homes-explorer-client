@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import AssetStats from "./assetStats/assetStats";
 
 // import styles
+import "./asset.scss"
 import blackHeart from "../../assets/heart-black.png"
 import redHeart from "../../assets/heart-red.png"
 
@@ -101,10 +102,12 @@ export default function Asset({assetType, asset, favourites, setFavourites}) {
     <article className={"asset-container"}>
       <section className={"image-container"}>
         <img src={asset.image} alt={getAltImgText()} />
-        <div className={"favourite-icon-container"}>
+        <div
+          className={"favourite-icon-container"}
+          onClick={handleLike}
+        >
           <img
             src={imageSource} alt={"heart"}
-            onClick={handleLike}
           />
         </div>
       </section>
