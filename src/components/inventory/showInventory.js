@@ -46,12 +46,14 @@ export default function ShowInventory(props) {
     switch (assetType) {
       case "homes":
         API.getHomePlans()
-          .then(res => setAssets(res))
+          // simulate delayed API response
+          .then(res => setTimeout(() => setAssets(res), 1000))
           .catch(console.error)
         break
       case "lots":
         API.getLots()
-          .then(res => setAssets(res))
+          // simulate delayed API response
+          .then(res => setTimeout(() => setAssets(res), 1000))
           .catch(console.error)
     }
 

@@ -43,8 +43,9 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 - [x] build Navbar component
 - [x] build Home and Lot component
 - [x] build Homes and Lots views
+- [ ] display saved / all assets
+- [x] add rudimentary styling
 - [ ] build Modal
-- [ ] add rudimentary styling
 - [ ] Integrate Redux and store component state centrally
 
 ## Difficulties and complications
@@ -59,3 +60,4 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 - [ ] implement custom success and error messaging (e.g. failure to retrieve a response from the API)
 - [ ] add testing
 - [ ] Most consumers' pain-point is not understanding whether a land-plot is cheap or expensive (nobody wants to pay more than they have to). Integrating market pricing / valuation data into the Lot component could alleviate information asymmetry. Perhaps there is a Zoopla API or another pre-existing vendor that utilities public transaction data? This could be used to give users a better idea of how cheap / expensive a particular land plot is in relation to historic local or national data.
+- [ ] Simulating a delayed API response with setTimeout yields a drawback of the encapsulated modelling of the /homes and /lots route in one module. That is, in case of a delayed response, the old data remains partly visible and partly clashes with asset specific syntax. This is because both routes are dealt with in one component.
