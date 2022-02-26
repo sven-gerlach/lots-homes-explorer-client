@@ -1,9 +1,6 @@
 // import libraries and frameworks
 import React from "react";
 
-// import styles
-import "./assetStats.scss"
-
 
 /**
  * High-level description comprised of number of beds, baths and size for homes and acres and sqft for lots.

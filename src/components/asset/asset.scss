@@ -8,7 +8,7 @@
   flex: 0 1 300px;
 
   & > * {
-    margin: 1rem;
+    margin: 0 1rem;
   }
 
   .image-container {
@@ -40,6 +40,38 @@
       img {
         width: 100%;
       }
+    }
+  }
+
+  .asset-description-container {
+    p {
+      margin: 10px 0;
+    }
+
+    .asset-title {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .asset-stats {
+      color: grey;
+    }
+
+    .asset-tags {
+      color: grey;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .asset-tags > p {
+      border: 1px solid grey;
+      border-radius: $border-radius;
+      padding: 2px 10px;
+    }
+
+    .asset-description {
+      white-space: pre-line;
     }
   }
 }
