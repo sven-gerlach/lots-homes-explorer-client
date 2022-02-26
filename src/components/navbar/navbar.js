@@ -1,6 +1,8 @@
 // import libraries and frameworks
 import React from "react";
-import { Link } from "react-router-dom";
+
+// import components
+import CustomLink from "../links/customLinks";
 
 // import styles
 import "./navbar.scss"
@@ -13,11 +15,12 @@ import "./navbar.scss"
  * @constructor
  */
 export default function Navbar(props) {
+
   return (
     <>
       <nav className={"navbar-container"}>
-        <Link to={"/homes"}>Home Plans</Link>
-        <Link to={"lots"}>Lots</Link>
+        <CustomLink to={"/homes"}>Home Plans</CustomLink>
+        <CustomLink to={"/lots"}>Lots</CustomLink>
       </nav>
     </>
   )
