@@ -44,6 +44,7 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 - [x] build Home and Lot component
 - [x] build Homes and Lots views
 - [ ] display saved / all assets
+- [ ] solve responsive design issue of flex boxing the asset container
 - [x] add rudimentary styling
 - [ ] build Modal
 - [ ] Integrate Redux and store component state centrally
@@ -52,6 +53,7 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 1) The new react-router-dom (^6.0) has a slightly different logic behind using routes. My IDE (Webstorm) appears to have used an outdated (pre 6.0) and local TypeScript library instead of pointing to the local current one inside node-modules. With some research the answers to this [stackoverflow](https://stackoverflow.com/questions/70031839/cannot-resolve-symbol-routes) question provided a resolution.
 2) Without specifying the react-router version, I installed, unbeknownst to me, a newer version ^6. Thus far, I had only worked with ^v5. The syntax has changed a fair bit, so this took some reading of the documentation to get used to it and understand the new approach.
 3) To keep the code DRY, with extensibility in mind (e.g. adding a financing solution as a third asset type), and because the Homes and Lots components have very similar states, I decided to represent both assets in one component ShowInventory, displaying one Asset component. I think there is a smarter way to abstract away the clunky code (e.g. switch statements, Asset is a bit overloaded mainly because the id keys are not the same across both assets).
+4) The flexbox container is perfectly responsive but if an Asset component breaks onto the last line as a single element, it expands to fill 100% of that width, making the image look grainy and generally looking slightly out of place from a design and UX perspective. Grid would solve this issue but would mean I would have to control the number of columns with media queries. Probably the better way to go.
 
 ## Stretch Goals and Next Steps
 - [ ] Persist saved homes and lots in local storage

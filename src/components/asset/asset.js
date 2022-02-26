@@ -16,9 +16,10 @@ import redHeart from "../../assets/heart-red.png"
  * @param asset
  * @param favourites
  * @param setFavourites
+ * @param getIdKey
  * @constructor
  */
-export default function Asset({assetType, asset, favourites, setFavourites}) {
+export default function Asset({assetType, asset, favourites, setFavourites, getIdKey}) {
   const [imageSource, setImageSource] = useState("")
 
   /**
@@ -42,24 +43,6 @@ export default function Asset({assetType, asset, favourites, setFavourites}) {
       case "lots":
         return `${asset.acres} acres of land`
     }
-  }
-
-  /**
-   * Since the idKey inside the API response objects is different between homes and lots, this function returns the
-   * correct key needed to access the asset id
-   * @return {string}
-   */
-  const getIdKey = () => {
-    let idKey = ""
-    // eslint-disable-next-line
-    switch (assetType) {
-      case "homes":
-        idKey = "homePlanId"
-        break
-      case "lots":
-        idKey = "lotId"
-    }
-    return idKey
   }
 
   /**
