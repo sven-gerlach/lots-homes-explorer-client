@@ -106,7 +106,7 @@ export default function Asset({assetType, asset, favourites, setFavourites, getI
   }
 
   /**
-   * create a query string and redirect / inject it into the url
+   * create a query string and inject it into the url
    * @param e
    */
   const handleAssetClick = (e) => {
