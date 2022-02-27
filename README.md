@@ -49,7 +49,8 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 - [x] build Modal
 - [x] de-couple asset such that modal uses basic asset representation without the click-feature
 - [x] fix modal being loaded when the url + query string is entered exogenously into the browser
-- [ ] favourite button feature does not work inside modal
+- [x] favourite button feature does not work inside modal
+- [ ] clicking the heart icon causes a brief re-render of the img and when the user likes an asset inside the modal it causes the scroll position to be reset to the beginning
 - [ ] Integrate Redux and store component state centrally
 
 ## Considerations

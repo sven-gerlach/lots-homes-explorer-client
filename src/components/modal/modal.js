@@ -53,7 +53,7 @@ export default function Modal (
       case "homes":
         if (Object.keys(compatibleLots).length) {
           const idKey = "lotId"
-          const currentHomeId = asset[getIdKey()]
+          const currentHomeId = asset[getIdKey(assetType)]
           // not ideal since this is a linear time operation
           const newState = lots.filter(lot => compatibleLots[currentHomeId].includes(lot[idKey]))
           setCompatibleAssets(newState)
@@ -62,7 +62,7 @@ export default function Modal (
       case "lots":
         if (Object.keys(compatibleHomes).length) {
           const idKey = "homePlanId"
-          const currentLotId = asset[getIdKey()]
+          const currentLotId = asset[getIdKey(assetType)]
           // not ideal since this is a linear time operation
           const newState = homes.filter(home => compatibleHomes[currentLotId].includes(home[idKey]))
           setCompatibleAssets(newState)
@@ -89,7 +89,7 @@ export default function Modal (
             compatibleAssets.map((asset, key) => (
               <Asset
                 key={key}
-                assetType={assetType}
+                assetType={assetType === "homes" ? "lots" : "homes"}
                 asset={asset}
                 favourites={favourites}
                 setFavourites={setFavourites}
@@ -98,6 +98,7 @@ export default function Modal (
                 compatibleHomes={compatibleHomes}
                 homes={homes}
                 lots={lots}
+                isClickable={false}
               />))
           )}
         </div>

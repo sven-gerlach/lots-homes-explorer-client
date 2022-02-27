@@ -29,7 +29,7 @@ export default function withModal(WrappedComponent, assetType, getIdKey, favouri
       // Note: disregard linter warning as the boolean will only work if type coercion is allowed
       // [string] == [number]
       // eslint-disable-next-line
-      if (asset[getIdKey()] == searchParamAssetValue) {
+      if (asset[getIdKey(assetType)] == searchParamAssetValue) {
         setIsModalActive(true)
       }
       // eslint-disable-next-line
@@ -48,7 +48,7 @@ export default function withModal(WrappedComponent, assetType, getIdKey, favouri
      * @param e
      */
     const handleAssetClick = (e) => {
-      const assetIdKey = getIdKey()
+      const assetIdKey = getIdKey(assetType)
       setSearchParams({ [assetType]: asset[assetIdKey] })
     }
 

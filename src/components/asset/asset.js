@@ -37,10 +37,15 @@ export default function Asset(
     compatibleHomes,
     homes,
     lots,
-    handleAssetClick=null,
-    isClickable=false
+    handleAssetClick,
+    isClickable,
   }) {
+  // const [assetId, setAssetId] = useState(null)
   const [imageSource, setImageSource] = useState("")
+
+  // useEffect(() => {
+  //   setAssetId(asset[getIdKey(assetType)])
+  // }, [asset])
 
   /**
    * Every time the favourites or the asset state changes, update the image source used for the favourites / heart
@@ -50,6 +55,17 @@ export default function Asset(
     setImageSource(getImgSrc())
     // eslint-disable-next-line
   }, [favourites, asset])
+
+  /**
+   * Return the image src based in the current asset's id key and whether the current asset is a favourite item
+   * @return {*}
+   */
+  const getImgSrc = () => {
+    const idKey = getIdKey(assetType)
+    return favourites[assetType][asset[idKey]] === true
+      ? redHeart
+      : blackHeart
+  }
 
   /**
    * Returns the string for the alt attribute associated with the asset img
@@ -66,24 +82,13 @@ export default function Asset(
   }
 
   /**
-   * Return the image src based in the current asset's id key and whether the current asset is a favourite item
-   * @return {*}
-   */
-  const getImgSrc = () => {
-    const idKey = getIdKey()
-    return favourites[assetType][asset[idKey]] === true
-      ? redHeart
-      : blackHeart
-  }
-
-  /**
    * Updated state in the favourites object to either true or false.
    * @param e
    */
   const handleLike = (e) => {
     e.stopPropagation()
-    console.log(e)
-    const idKey = getIdKey()
+    e.preventDefault()
+    const idKey = getIdKey(assetType)
     // current asset id can be accessed with the correct asset id key
     const currentAssetId = asset[idKey]
     // extract the nested object from the favourites object that is associated with the current asset's class (homes or

@@ -125,7 +125,7 @@ export default function ShowInventory(props) {
    * correct key needed to access the asset id
    * @return {string}
    */
-  const getIdKey = () => {
+  const getIdKey = (assetType) => {
     let idKey = ""
     // eslint-disable-next-line
     switch (assetType) {
@@ -152,7 +152,7 @@ export default function ShowInventory(props) {
     const assets = assetType === "homes" ? homes : lots
     if (isFavouritesDisplayed) {
       return assets?.filter(asset => {
-        const assetId = asset[getIdKey()]
+        const assetId = asset[getIdKey(assetType)]
         const assetTypeFavourites = favourites[assetType]
         // assetId must be a key in favourites[assetType] and the value of that key must evaluate to true
         return assetTypeFavourites[assetId]
