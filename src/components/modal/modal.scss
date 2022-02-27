@@ -21,9 +21,9 @@
     background-color: white;
     width: 70%;
     height: 70%;
-    overflow: scroll;
-    overflow-x: hidden;
+    overflow: auto;
     border-radius: $border-radius;
+    border-bottom: 1rem solid white;
 
     .modal-header-container {
       margin: 0 0 1rem 0;

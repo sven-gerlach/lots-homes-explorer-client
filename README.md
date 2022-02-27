@@ -38,15 +38,17 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 ## State Considerations
 - Eventually state needs to be stored in Redux. Since I have not yet worked with Redux I will first build the mock without Redux and integrate it later.
 
-## ToDo
+## ToDo / Feature Queue
 - [x] set-out project management path, including routes, views, and components
 - [x] build Navbar component
 - [x] build Home and Lot component
 - [x] build Homes and Lots views
-- [ ] display saved / all assets
-- [ ] solve responsive design issue of flex boxing the asset container
+- [x] display saved / all assets
+- [x] solve responsive design issue of flex boxing the asset container
 - [x] add rudimentary styling
-- [ ] build Modal
+- [x] build Modal
+- [ ] de-couple asset such that modal uses basic asset representation without the click-feature
+- [ ] favourite button feature does not work inside modal
 - [ ] Integrate Redux and store component state centrally
 
 ## Considerations
