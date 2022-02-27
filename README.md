@@ -47,7 +47,8 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 - [x] solve responsive design issue of flex boxing the asset container
 - [x] add rudimentary styling
 - [x] build Modal
-- [ ] de-couple asset such that modal uses basic asset representation without the click-feature
+- [x] de-couple asset such that modal uses basic asset representation without the click-feature
+- [x] fix modal being loaded when the url + query string is entered exogenously into the browser
 - [ ] favourite button feature does not work inside modal
 - [ ] Integrate Redux and store component state centrally
 

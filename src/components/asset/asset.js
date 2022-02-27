@@ -3,13 +3,11 @@ import React, {useEffect, useState} from "react";
 
 // import components
 import AssetStats from "./assetStats/assetStats";
-import Modal from "../modal/modal";
 
 // import styles
 import "./asset.scss"
 import blackHeart from "../../assets/heart-black.png"
 import redHeart from "../../assets/heart-red.png"
-import { useSearchParams } from "react-router-dom";
 
 
 /**
@@ -23,6 +21,8 @@ import { useSearchParams } from "react-router-dom";
  * @param compatibleHomes
  * @param homes
  * @param lots
+ * @param handleAssetClick
+ * @param isClickable
  * @return {JSX.Element}
  * @constructor
  */
@@ -82,6 +82,7 @@ export default function Asset(
    */
   const handleLike = (e) => {
     e.stopPropagation()
+    console.log(e)
     const idKey = getIdKey()
     // current asset id can be accessed with the correct asset id key
     const currentAssetId = asset[idKey]

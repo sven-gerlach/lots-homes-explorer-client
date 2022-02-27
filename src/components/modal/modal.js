@@ -53,9 +53,6 @@ export default function Modal (
       case "homes":
         if (Object.keys(compatibleLots).length) {
           const idKey = "lotId"
-          console.log(asset)
-          console.log(getIdKey())
-          console.log(asset[getIdKey()])
           const currentHomeId = asset[getIdKey()]
           // not ideal since this is a linear time operation
           const newState = lots.filter(lot => compatibleLots[currentHomeId].includes(lot[idKey]))
@@ -63,7 +60,7 @@ export default function Modal (
         }
         break
       case "lots":
-        if (homes && compatibleHomes) {
+        if (Object.keys(compatibleHomes).length) {
           const idKey = "homePlanId"
           const currentLotId = asset[getIdKey()]
           // not ideal since this is a linear time operation

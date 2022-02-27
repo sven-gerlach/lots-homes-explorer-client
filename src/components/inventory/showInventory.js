@@ -169,10 +169,6 @@ export default function ShowInventory(props) {
     return assetType.charAt(0).toUpperCase() + assetType.substring(1)
   }
 
-  useEffect(() => {
-    console.log(lots)
-  }, [lots])
-
   const AssetWithModal = withModal(Asset, assetType, getIdKey, favourites, setFavourites, compatibleLots, compatibleHomes, lots, homes)
 
   return (
@@ -190,6 +186,7 @@ export default function ShowInventory(props) {
           {getRelevantAssets()?.map((asset, key) => {
             return (
               <AssetWithModal
+                key={key}
                 asset={asset}
               />)
           })}
