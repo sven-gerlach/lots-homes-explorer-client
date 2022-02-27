@@ -51,8 +51,11 @@ export default function Modal (
     // eslint-disable-next-line
     switch (assetType) {
       case "homes":
-        if (compatibleLots) {
+        if (Object.keys(compatibleLots).length) {
           const idKey = "lotId"
+          console.log(asset)
+          console.log(getIdKey())
+          console.log(asset[getIdKey()])
           const currentHomeId = asset[getIdKey()]
           // not ideal since this is a linear time operation
           const newState = lots.filter(lot => compatibleLots[currentHomeId].includes(lot[idKey]))
@@ -60,7 +63,7 @@ export default function Modal (
         }
         break
       case "lots":
-        if (compatibleHomes) {
+        if (homes && compatibleHomes) {
           const idKey = "homePlanId"
           const currentLotId = asset[getIdKey()]
           // not ideal since this is a linear time operation

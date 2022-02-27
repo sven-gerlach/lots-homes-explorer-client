@@ -37,10 +37,10 @@ export default function Asset(
     compatibleHomes,
     homes,
     lots,
+    handleAssetClick=null,
+    isClickable=false
   }) {
   const [imageSource, setImageSource] = useState("")
-  const [isModalActive, setIsModalActive] = useState(false)
-  const [searchParams, setSearchParams] = useSearchParams()
 
   /**
    * Every time the favourites or the asset state changes, update the image source used for the favourites / heart
@@ -50,20 +50,6 @@ export default function Asset(
     setImageSource(getImgSrc())
     // eslint-disable-next-line
   }, [favourites, asset])
-
-  /**
-   * If the url query string contains the assetType (homes | lots) open the modal
-   */
-  useEffect(() => {
-    const searchParamAssetValue = searchParams.get(assetType)
-    // Note: disregard linter warning as the boolean will only work if type coercion is allowed
-    // [string] == [number]
-    // eslint-disable-next-line
-    if (asset[getIdKey()] == searchParamAssetValue) {
-      setIsModalActive(true)
-    }
-    // eslint-disable-next-line
-  }, [searchParams])
 
   /**
    * Returns the string for the alt attribute associated with the asset img
@@ -116,27 +102,10 @@ export default function Asset(
     })
   }
 
-  /**
-   * Pass this function to the modal to close the modal when it is open
-   */
-  const closeModal = () => {
-    setIsModalActive(false)
-    setSearchParams("")
-  }
-
-  /**
-   * create a query string and inject it into the url
-   * @param e
-   */
-  const handleAssetClick = (e) => {
-    const assetIdKey = getIdKey()
-    setSearchParams({ [assetType]: asset[assetIdKey] })
-  }
-
   return (
     <>
       <article
-        className={"asset-container"}
+        className={`asset-container ${isClickable ? "clickable-asset-container" : ""}`}
         onClick={handleAssetClick}
       >
         <section className={"image-container"}>
@@ -161,24 +130,6 @@ export default function Asset(
           <p className={"asset-description"}>{asset.description}</p>
         </section>
       </article>
-      {isModalActive &&(
-        <section className={"modal-container"}>
-          <Modal
-            closeModal={closeModal}
-            modalHeader={assetType === "homes" ? asset.name : asset.address}
-            modalSubHeader={assetType === "homes" ? "Lots" : "Homes"}
-            asset={asset}
-            assetType={assetType}
-            favourites={favourites}
-            setFavourites={setFavourites}
-            getIdKey={getIdKey}
-            compatibleLots={compatibleLots}
-            compatibleHomes={compatibleHomes}
-            homes={homes}
-            lots={lots}
-          />
-        </section>
-      )}
     </>
   )
 }
