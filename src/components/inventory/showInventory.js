@@ -22,7 +22,11 @@ import API from "../../services/api";
  */
 export default function ShowInventory(props) {
   const [assetType, setAssetType] = useState(null)
-  const [assets, setAssets] = useState(null)
+  const [homes, setHomes] = useState(null)
+  const [lots, setLots] = useState(null)
+  const [compatibilityCombinations, setCompatibilityCombinations] = useState(null)
+  const [compatibleHomesHash, setCompatibleHomesHash] = useState({})
+  const [compatibleLotsHash, setCompatibleLotsHash] = useState(null)
   const [favourites, setFavourites] = useState({homes: {}, lots: {}})
   const [isFavouritesDisplayed, setIsFavouritesDisplayed] = useState(false)
   const location = useLocation()
@@ -46,27 +50,62 @@ export default function ShowInventory(props) {
   }, [assetType])
 
   /**
-   * Make API call to retrieve all available assets
+   * Make API call to retrieve all available assets and compatibility data
    */
   useEffect(() => {
     // There is no need for a default case
     // eslint-disable-next-line
-    switch (assetType) {
-      case "homes":
-        API.getHomePlans()
-          // simulate delayed API response
-          .then(res => setTimeout(() => setAssets(res), 1000))
-          .catch(console.error)
-        break
-      case "lots":
-        API.getLots()
-          // simulate delayed API response
-          .then(res => setTimeout(() => setAssets(res), 1000))
-          .catch(console.error)
-    }
+    API.getHomePlans()
+      // simulate delayed API response
+      .then(res => setTimeout(() => setHomes(res), 1000))
+      .catch(console.error)
+    API.getLots()
+      // simulate delayed API response
+      .then(res => setTimeout(() => setLots(res), 1000))
+      .catch(console.error)
+    API.getCombinations()
+      .then(res => setTimeout(() => setCompatibilityCombinations(res), 1000))
+      .catch(console.error)
 
     // eslint-disable-next-line
   }, [assetType])
+
+
+  /**
+   * Asymptotically, it is conceivable that with n homes and k lots there could be n x k combinations. Whilst the
+   * sample data set is small, if k and n are in the many hundreds or few thousands, the combinations could conceivably
+   * run into the millions. Filtering an unordered data set would then have linear time complexity. Doing that every
+   * time a user views assets and their compatible matches would be expensive. Whilst in this distribute scenario it is
+   * perhaps less important but this would become very important if we created an API end-point for combinations of a
+   * specific asset. Hence, I am iterating over the array to store the matches for each home and lot ID in a hash table
+   * as that will allow for constant time lookup of all pairings.
+   */
+  useEffect(() => {
+    setCompatibleHomesHash(getHashTable("homes"))
+    setCompatibleLotsHash(getHashTable("lots"))
+    // eslint-disable-next-line
+  }, [compatibilityCombinations])
+
+  /**
+   * Return hash table for either homes or lots
+   * @param asset
+   * @return {{}}
+   */
+  const getHashTable = (asset) => {
+    let hashTable = {}
+    compatibilityCombinations?.forEach(combination => {
+      const key = asset === "homes" ? combination.homePlanId : combination.lotId
+      const value = asset === "homes" ? combination.lotId : combination.homePlanId
+
+      if (key in hashTable) {
+        hashTable = {...hashTable, [key]: [...hashTable[key], value]}
+      }
+      else {
+        hashTable = {...hashTable, [key]: [value]}
+      }
+    })
+    return hashTable
+  }
 
   /**
    * Since the idKey inside the API response objects is different between homes and lots, this function returns the
@@ -97,6 +136,7 @@ export default function ShowInventory(props) {
    * @return {unknown}
    */
   const getRelevantAssets = () => {
+    const assets = assetType === "homes" ? homes : lots
     if (isFavouritesDisplayed) {
       return assets?.filter(asset => {
         const assetId = asset[getIdKey()]

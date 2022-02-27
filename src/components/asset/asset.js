@@ -19,6 +19,7 @@ import { useSearchParams } from "react-router-dom";
  * @param favourites
  * @param setFavourites
  * @param getIdKey
+ * @param getCapitalisedAssetType
  * @constructor
  */
 export default function Asset({assetType, asset, favourites, setFavourites, getIdKey}) {
@@ -43,7 +44,7 @@ export default function Asset({assetType, asset, favourites, setFavourites, getI
     // Note: disregard linter warning as the boolean will only work if type coercion is allowed
     // [string] == [number]
     if (asset[getIdKey()] == searchParamAssetValue) {
-      changeModalState()
+      setIsModalActive(true)
     }
   }, [searchParams])
 
@@ -101,8 +102,9 @@ export default function Asset({assetType, asset, favourites, setFavourites, getI
   /**
    * Pass this function to the modal to close the modal when it is open
    */
-  const changeModalState = () => {
-    setIsModalActive(prevState => !prevState)
+  const closeModal = () => {
+    setIsModalActive(false)
+    setSearchParams("")
   }
 
   /**
@@ -145,7 +147,14 @@ export default function Asset({assetType, asset, favourites, setFavourites, getI
       {isModalActive &&(
         <section className={"modal-container"}>
           <Modal
-            closeModal={changeModalState}
+            closeModal={closeModal}
+            modalHeader={assetType === "homes" ? asset.name : asset.address}
+            modalSubHeader={assetType === "homes" ? "Lots" : "Homes"}
+            asset={asset}
+            assetType={assetType}
+            favourites={favourites}
+            setFavourites={setFavourites}
+            getIdKey={getIdKey}
           />
         </section>
       )}

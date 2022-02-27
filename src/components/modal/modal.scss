@@ -41,6 +41,17 @@
         box-shadow: $hover-shadow;
       }
     }
+
+    .modal-header {
+      font-size: 2rem;
+      font-weight: bold;
+
+    }
+
+    .modal-sub-header {
+      font-size: 1.5rem;
+      margin-bottom: 0;
+    }
   }
 
 }
