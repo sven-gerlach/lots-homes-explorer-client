@@ -4,10 +4,11 @@ import {useLocation } from "react-router-dom";
 
 // import components
 import Asset from "../asset/asset";
+import withModal from "../HOCs/withModal";
 
 // import styles
-import "./showInventory.scss"
 
+import "./showInventory.scss"
 // import utils
 import API from "../../services/api";
 
@@ -168,6 +169,12 @@ export default function ShowInventory(props) {
     return assetType.charAt(0).toUpperCase() + assetType.substring(1)
   }
 
+  useEffect(() => {
+    console.log(lots)
+  }, [lots])
+
+  const AssetWithModal = withModal(Asset, assetType, getIdKey, favourites, setFavourites, compatibleLots, compatibleHomes, lots, homes)
+
   return (
     <>
       <section className={"main-section"}>
@@ -182,17 +189,8 @@ export default function ShowInventory(props) {
         <div className={"assets-container"}>
           {getRelevantAssets()?.map((asset, key) => {
             return (
-              <Asset
-                key={key}
-                assetType={assetType}
+              <AssetWithModal
                 asset={asset}
-                favourites={favourites}
-                setFavourites={setFavourites}
-                getIdKey={getIdKey}
-                compatibleLots={compatibleLots}
-                compatibleHomes={compatibleHomes}
-                homes={homes}
-                lots={lots}
               />)
           })}
         </div>

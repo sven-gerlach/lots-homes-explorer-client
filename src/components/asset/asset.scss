@@ -6,12 +6,15 @@
   border: 1px solid black;
   border-radius: $border-radius;
   flex: 1 0 250px;
-  transition: box-shadow 400ms ease-in-out;
-  user-select: none;
 
-  &:hover {
-    box-shadow: $hover-shadow;
-    cursor: pointer;
+  &.clickable-asset-container {
+    transition: box-shadow 400ms ease-in-out;
+    user-select: none;
+
+    &:hover {
+      box-shadow: $hover-shadow;
+      cursor: pointer;
+    }
   }
 
   & > * {
