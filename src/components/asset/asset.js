@@ -19,10 +19,25 @@ import { useSearchParams } from "react-router-dom";
  * @param favourites
  * @param setFavourites
  * @param getIdKey
- * @param getCapitalisedAssetType
+ * @param compatibleLots
+ * @param compatibleHomes
+ * @param homes
+ * @param lots
+ * @return {JSX.Element}
  * @constructor
  */
-export default function Asset({assetType, asset, favourites, setFavourites, getIdKey}) {
+export default function Asset(
+  {
+    assetType,
+    asset,
+    favourites,
+    setFavourites,
+    getIdKey,
+    compatibleLots,
+    compatibleHomes,
+    homes,
+    lots,
+  }) {
   const [imageSource, setImageSource] = useState("")
   const [isModalActive, setIsModalActive] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams()
@@ -43,9 +58,11 @@ export default function Asset({assetType, asset, favourites, setFavourites, getI
     const searchParamAssetValue = searchParams.get(assetType)
     // Note: disregard linter warning as the boolean will only work if type coercion is allowed
     // [string] == [number]
+    // eslint-disable-next-line
     if (asset[getIdKey()] == searchParamAssetValue) {
       setIsModalActive(true)
     }
+    // eslint-disable-next-line
   }, [searchParams])
 
   /**
@@ -155,6 +172,10 @@ export default function Asset({assetType, asset, favourites, setFavourites, getI
             favourites={favourites}
             setFavourites={setFavourites}
             getIdKey={getIdKey}
+            compatibleLots={compatibleLots}
+            compatibleHomes={compatibleHomes}
+            homes={homes}
+            lots={lots}
           />
         </section>
       )}

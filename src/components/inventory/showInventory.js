@@ -21,14 +21,26 @@ import API from "../../services/api";
  * @constructor
  */
 export default function ShowInventory(props) {
+  // homes | lots
   const [assetType, setAssetType] = useState(null)
+
+  // store API data
   const [homes, setHomes] = useState(null)
   const [lots, setLots] = useState(null)
   const [compatibilityCombinations, setCompatibilityCombinations] = useState(null)
-  const [compatibleHomesHash, setCompatibleHomesHash] = useState({})
-  const [compatibleLotsHash, setCompatibleLotsHash] = useState(null)
+
+  // signature {homeId: [lotId]}
+  const [compatibleLots, setCompatibleLots] = useState({})
+
+  // {lotId: [homeId]}
+  const [compatibleHomes, setCompatibleHomes] = useState(null)
+
+  // {homes: [homeId], lots: [lotId]}
   const [favourites, setFavourites] = useState({homes: {}, lots: {}})
+
+  // Boolean
   const [isFavouritesDisplayed, setIsFavouritesDisplayed] = useState(false)
+
   const location = useLocation()
 
   /**
@@ -81,8 +93,8 @@ export default function ShowInventory(props) {
    * as that will allow for constant time lookup of all pairings.
    */
   useEffect(() => {
-    setCompatibleHomesHash(getHashTable("homes"))
-    setCompatibleLotsHash(getHashTable("lots"))
+    setCompatibleLots(getHashTable("homes"))
+    setCompatibleHomes(getHashTable("lots"))
     // eslint-disable-next-line
   }, [compatibilityCombinations])
 
@@ -177,6 +189,10 @@ export default function ShowInventory(props) {
                 favourites={favourites}
                 setFavourites={setFavourites}
                 getIdKey={getIdKey}
+                compatibleLots={compatibleLots}
+                compatibleHomes={compatibleHomes}
+                homes={homes}
+                lots={lots}
               />)
           })}
         </div>

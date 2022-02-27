@@ -21,31 +21,43 @@
     background-color: white;
     width: 70%;
     height: 70%;
+    overflow: scroll;
+    overflow-x: hidden;
     border-radius: $border-radius;
 
-    .close-icon-container {
-      background: center / contain no-repeat url("../../assets/close-icon-black.png");
-      padding: 3px;
-      width: $icon-size;
-      height: $icon-size;
-      border-radius: 50%;
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      /* Transition does not work with images. Perhaps an svg image could be transitioned. */
-      //transition: background 400ms ease-in-out;
+    .modal-header-container {
+      margin: 0 0 1rem 0;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background-color: white;
+      // otherwise images will sit in-front of header container
+      z-index: 1;
 
-      &:hover {
-        background: center / contain no-repeat url("../../assets/close-icon-red.png");
-        cursor: pointer;
-        box-shadow: $hover-shadow;
+      .modal-header {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
       }
-    }
 
-    .modal-header {
-      font-size: 2rem;
-      font-weight: bold;
+      .close-icon-container {
+        background: center / contain no-repeat url("../../assets/close-icon-black.png");
+        padding: 3px;
+        width: $icon-size;
+        height: $icon-size;
+        border-radius: 50%;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        /* Transition does not work with images. Perhaps an svg image could be transitioned. */
+        //transition: background 400ms ease-in-out;
 
+        &:hover {
+          background: center / contain no-repeat url("../../assets/close-icon-red.png");
+          cursor: pointer;
+          box-shadow: $hover-shadow;
+        }
+      }
     }
 
     .modal-sub-header {

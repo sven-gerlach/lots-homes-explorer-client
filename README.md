@@ -56,6 +56,7 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 4) The flexbox container is perfectly responsive but if an Asset component breaks onto the last line as a single element, it expands to fill 100% of that width, making the image look grainy and generally looking slightly out of place from a design and UX perspective. Grid would solve this issue but would mean I would have to control the number of columns with media queries. Probably the better way to go.
 5) Making all API requests (homes, lots, compatibles) in the showInventory component is possibly wasteful. Although I suspect the data size will be limited to a few thousand lots and homes. As long as it is not in the millions I suspect the overhead will be acceptable. 
 6) It would appear showInventory is being rendered three times - which is exactly once more than I would expect.
+7) Hard-coded logic in the modal. The assetId keys are hardcoded. I am sure there is a much better way to solve this without such tight coupling.
 
 ## Stretch Goals and Next Steps
 - [ ] Persist saved homes and lots in local storage
