@@ -1,0 +1,46 @@
+@import "../../style-themes";
+
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: rgba($background-grey, 0.7);
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .modal-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    width: 70%;
+    height: 70%;
+    border-radius: $border-radius;
+
+    .close-icon-container {
+      background: center / contain no-repeat url("../../assets/close-icon-black.png");
+      padding: 3px;
+      width: $icon-size;
+      height: $icon-size;
+      border-radius: 50%;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      /* Transition does not work with images. Perhaps an svg image could be transitioned. */
+      //transition: background 400ms ease-in-out;
+
+      &:hover {
+        background: center / contain no-repeat url("../../assets/close-icon-red.png");
+        cursor: pointer;
+        box-shadow: $hover-shadow;
+      }
+    }
+  }
+
+}

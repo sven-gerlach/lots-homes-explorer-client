@@ -138,8 +138,7 @@ export default function ShowInventory(props) {
                 setFavourites={setFavourites}
                 getIdKey={getIdKey}
               />)
-          })
-          }
+          })}
         </div>
       </section>
     </>

@@ -3,11 +3,13 @@ import React, {useEffect, useState} from "react";
 
 // import components
 import AssetStats from "./assetStats/assetStats";
+import Modal from "../modal/modal";
 
 // import styles
 import "./asset.scss"
 import blackHeart from "../../assets/heart-black.png"
 import redHeart from "../../assets/heart-red.png"
+import { useSearchParams } from "react-router-dom";
 
 
 /**
@@ -21,6 +23,8 @@ import redHeart from "../../assets/heart-red.png"
  */
 export default function Asset({assetType, asset, favourites, setFavourites, getIdKey}) {
   const [imageSource, setImageSource] = useState("")
+  const [isModalActive, setIsModalActive] = useState(false)
+  const [searchParams, setSearchParams] = useSearchParams()
 
   /**
    * Every time the favourites or the asset state changes, update the image source used for the favourites / heart
@@ -30,6 +34,18 @@ export default function Asset({assetType, asset, favourites, setFavourites, getI
     setImageSource(getImgSrc())
     // eslint-disable-next-line
   }, [favourites, asset])
+
+  /**
+   * If the url query string contains the assetType (homes | lots) open the modal
+   */
+  useEffect(() => {
+    const searchParamAssetValue = searchParams.get(assetType)
+    // Note: disregard linter warning as the boolean will only work if type coercion is allowed
+    // [string] == [number]
+    if (asset[getIdKey()] == searchParamAssetValue) {
+      changeModalState()
+    }
+  }, [searchParams])
 
   /**
    * Returns the string for the alt attribute associated with the asset img
@@ -61,6 +77,7 @@ export default function Asset({assetType, asset, favourites, setFavourites, getI
    * @param e
    */
   const handleLike = (e) => {
+    e.stopPropagation()
     const idKey = getIdKey()
     // current asset id can be accessed with the correct asset id key
     const currentAssetId = asset[idKey]
@@ -81,29 +98,57 @@ export default function Asset({assetType, asset, favourites, setFavourites, getI
     })
   }
 
+  /**
+   * Pass this function to the modal to close the modal when it is open
+   */
+  const changeModalState = () => {
+    setIsModalActive(prevState => !prevState)
+  }
+
+  /**
+   * create a query string and redirect / inject it into the url
+   * @param e
+   */
+  const handleAssetClick = (e) => {
+    const assetIdKey = getIdKey()
+    setSearchParams({ [assetType]: asset[assetIdKey] })
+  }
+
   return (
-    <article className={"asset-container"}>
-      <section className={"image-container"}>
-        <img src={asset.image} alt={getAltImgText()} />
-        <div
-          className={"favourite-icon-container"}
-          onClick={handleLike}
-        >
-          <img
-            src={imageSource} alt={"heart"}
+    <>
+      <article
+        className={"asset-container"}
+        onClick={handleAssetClick}
+      >
+        <section className={"image-container"}>
+          <img src={asset.image} alt={getAltImgText()} />
+          <div
+            className={"favourite-icon-container"}
+            onClick={handleLike}
+          >
+            <img
+              src={imageSource} alt={"heart"}
+            />
+          </div>
+        </section>
+        <section className={"asset-description-container"}>
+          <p className={"asset-title"}>{asset.name || asset.address}</p>
+          <AssetStats assetType={assetType} asset={asset} />
+          <div className={"asset-tags"}>
+            {asset?.tags?.map((tag, key) => {
+              return <p key={key}>{tag}</p>
+            })}
+          </div>
+          <p className={"asset-description"}>{asset.description}</p>
+        </section>
+      </article>
+      {isModalActive &&(
+        <section className={"modal-container"}>
+          <Modal
+            closeModal={changeModalState}
           />
-        </div>
-      </section>
-      <section className={"asset-description-container"}>
-        <p className={"asset-title"}>{asset.name || asset.address}</p>
-        <AssetStats assetType={assetType} asset={asset} />
-        <div className={"asset-tags"}>
-          {asset?.tags?.map((tag, key) => {
-            return <p key={key}>{tag}</p>
-          })}
-        </div>
-        <p className={"asset-description"}>{asset.description}</p>
-      </section>
-    </article>
+        </section>
+      )}
+    </>
   )
 }
