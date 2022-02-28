@@ -18,9 +18,6 @@ import redHeart from "../../assets/heart-red.png"
  * @param setFavourites
  * @param getIdKey
  * @param compatibleLots
- * @param compatibleHomes
- * @param homes
- * @param lots
  * @param handleAssetClick
  * @param isClickable
  * @return {JSX.Element}
@@ -33,19 +30,11 @@ export default function Asset(
     favourites,
     setFavourites,
     getIdKey,
-    compatibleLots,
-    compatibleHomes,
-    homes,
-    lots,
     handleAssetClick,
     isClickable,
   }) {
-  // const [assetId, setAssetId] = useState(null)
-  const [imageSource, setImageSource] = useState("")
 
-  // useEffect(() => {
-  //   setAssetId(asset[getIdKey(assetType)])
-  // }, [asset])
+  const [imageSource, setImageSource] = useState("")
 
   /**
    * Every time the favourites or the asset state changes, update the image source used for the favourites / heart

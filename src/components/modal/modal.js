@@ -41,6 +41,8 @@ export default function Modal (
     lots,
   }) {
 
+  // store asset filtered for their compatibility with the current reference asset (the one the user clicked on)
+  // signature [{asset}]
   const [compatibleAssets, setCompatibleAssets] = useState()
 
   /**
@@ -56,6 +58,7 @@ export default function Modal (
           const currentHomeId = asset[getIdKey(assetType)]
           // not ideal since this is a linear time operation
           const newState = lots.filter(lot => compatibleLots[currentHomeId].includes(lot[idKey]))
+          console.log(newState)
           setCompatibleAssets(newState)
         }
         break

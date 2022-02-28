@@ -1,9 +1,13 @@
+// import frameworks and libraries
 import React, {useEffect, useState} from "react";
-import Modal from "../modal/modal";
 import {useSearchParams} from "react-router-dom";
+
+// import components
+import Modal from "../modal/modal";
 
 
 /**
+ * HOC that takes in an Asset component and returns a clickable asset that will render a modal if clicked.
  *
  * @param WrappedComponent
  * @param assetType

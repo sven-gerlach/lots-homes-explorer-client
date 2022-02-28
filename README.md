@@ -1,19 +1,25 @@
 # Lots Homes Explorer
 
 ## TLDR
-[to come]
+- All key requirements are completed, except for:
+  - [ ] using Redux for global state management
+- The UX is clean, well-structured, and reasonably close to the design guidelines provided
+- Adding an asset to favourites inside a modal cause a re-render and reset of the scroll bar (I have not found a solution except for a hacky one with refs and storing the scroll bar position)
+- Overall, the code is well documented with frequent commits
+- The syntax is too tightly coupled and at not very readable. I am certain a much richer usage of custom hooks, HOCs, and render props could cross-cut concerns a lot more, make the components loosely coupled, and clean up the syntax.
 
 ## User Stories
-- [ ] View and browse available home plans and lots
-- [ ] Like / store selected home plans and lots
-- [ ] View saved home plans and lots
-- [ ] Share specific home plans and lots with other users
+- [x] View and browse available home plans and lots
+- [x] Like / store selected home plans and lots
+- [x] View saved home plans and lots
+- [x] Share specific home plans and lots with other users
 
 ## Technologies, Libraries, and Frameworks
-- JavaScript
-- React
-- React-Router
-- Sass
+- [x] JavaScript
+- [x] React
+- [x] React-Router
+- [x] Sass
+- [ ] React-Redux
 
 _Note: I took the decision to refrain from using front-end styling frameworks like Bootstrap or MUI_
 
@@ -36,7 +42,7 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 | Modal            | display all lots compatible with homes and vice versa               |
 
 ## State Considerations
-- Eventually state needs to be stored in Redux. Since I have not yet worked with Redux I will first build the mock without Redux and integrate it later.
+- Eventually state needs to be stored in Redux. Since I have not yet worked with Redux I will first build the mock without Redux and attempt migration at a later point.
 
 ## ToDo / Feature Queue
 - [x] set-out project management path, including routes, views, and components

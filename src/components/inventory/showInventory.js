@@ -7,8 +7,8 @@ import Asset from "../asset/asset";
 import withModal from "../HOCs/withModal";
 
 // import styles
-
 import "./showInventory.scss"
+
 // import utils
 import API from "../../services/api";
 
@@ -63,17 +63,17 @@ export default function ShowInventory(props) {
   }, [assetType])
 
   /**
-   * Make API call to retrieve all available assets and compatibility data
+   * Make API call to retrieve all available assets and compatibility data.
+   * Note: I have added artificial timeout delays to properly simulate the asynchronous nature of the request/response
+   * cycle
    */
   useEffect(() => {
     // There is no need for a default case
     // eslint-disable-next-line
     API.getHomePlans()
-      // simulate delayed API response
       .then(res => setTimeout(() => setHomes(res), 1000))
       .catch(console.error)
     API.getLots()
-      // simulate delayed API response
       .then(res => setTimeout(() => setLots(res), 1000))
       .catch(console.error)
     API.getCombinations()
@@ -81,7 +81,7 @@ export default function ShowInventory(props) {
       .catch(console.error)
 
     // eslint-disable-next-line
-  }, [assetType])
+  }, [])
 
 
   /**

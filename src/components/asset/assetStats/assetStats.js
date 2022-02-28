@@ -16,10 +16,12 @@ export default function AssetStats({assetType, asset}) {
       case "homes":
         const beds = `${asset.numBeds} beds`
         const baths = `${asset.numBaths} baths`
-        const size = `${asset.sqft} sqft`
+        const size = `${asset.sqft.toLocaleString()} sqft`
         return `${beds} - ${baths} - ${size}`
       case "lots":
-        return `${asset.acres} acres - ${asset.sqft} sqft`
+        const acres = asset.acres
+        const sqft = Math.round(acres * 43560).toLocaleString()
+        return `${acres} acres - ${sqft} sqft`
     }
   }
 
