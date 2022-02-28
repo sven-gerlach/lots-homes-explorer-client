@@ -11,6 +11,7 @@ import "./showInventory.scss"
 
 // import utils
 import API from "../../services/api";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 
 /**
@@ -37,7 +38,7 @@ export default function ShowInventory(props) {
   const [compatibleHomes, setCompatibleHomes] = useState(null)
 
   // {homes: [homeId], lots: [lotId]}
-  const [favourites, setFavourites] = useState({homes: {}, lots: {}})
+  const [favourites, setFavourites] = useLocalStorage("favourites", {homes: {}, lots: {}})
 
   // Boolean
   const [isFavouritesDisplayed, setIsFavouritesDisplayed] = useState(false)
