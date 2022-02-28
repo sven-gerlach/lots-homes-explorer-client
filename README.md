@@ -24,22 +24,19 @@
 _Note: I took the decision to refrain from using front-end styling frameworks like Bootstrap or MUI_
 
 ## Front-End Routes
-| Route                        | Comment                                   |
-|------------------------------|-------------------------------------------|
-| /homes                       | display all available home plans          |
-| /homes&selected-home-plan=id | display all lots compatible with home :id |
-| /lots                        | display all available lots                |
-| /lots&selected-lot=id        | display all homes compatible with lot :id |
+| Route  | Comment                          |
+|--------|----------------------------------|
+| /homes | display all available home plans |
+| /lots  | display all available lots       |
+| /*     | display a quasi-404              |
 
 ## Views and Components
-| View / Component | Comment                                                             |
-|------------------|---------------------------------------------------------------------|
-| NavBar           | navigate to /homes and /lot route                                   |
-| Homes            | display all available Home components                               |
-| Lots             | display all available Lot components                                |
-| Home             | display home data (name, beds, baths, size, tags, description, img) |
-| Lot              | display lot data (address, size, description, img)                  |
-| Modal            | display all lots compatible with homes and vice versa               |
+| View / Component | Comment                                                                                |
+|------------------|----------------------------------------------------------------------------------------|
+| NavBar           | navigate to /homes and /lot route                                                      |
+| ShowInventory    | manage business logic for displaying homes and lots assets                             |
+| Home             | display asset-specific home/lot data (name, beds, baths, size, tags, description, img) |
+| Modal            | display all lots compatible with homes and vice versa                                  |
 
 ## State Considerations
 - Eventually state needs to be stored in Redux. Since I have not yet worked with Redux I will first build the mock without Redux and attempt migration at a later point.

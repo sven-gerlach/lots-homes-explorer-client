@@ -22,7 +22,8 @@ export default function App() {
       <Navbar />
       <Routes>
         {/* use the path to fetch data from the API */}
-        <Route path={"/:assetType"} element={<ShowInventory />} />
+        <Route path={"/homes"} element={<ShowInventory />} />
+        <Route path={"/lots"} element={<ShowInventory />} />
         <Route path={"*"} element={<NoMatch />} />
       </Routes>
     </>

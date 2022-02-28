@@ -37,7 +37,7 @@ export default function ShowInventory(props) {
   // {lotId: [homeId]}
   const [compatibleHomes, setCompatibleHomes] = useState(null)
 
-  // {homes: [homeId], lots: [lotId]}
+  // custom hook with signature:  {homes: [homeId], lots: [lotId]}
   const [favourites, setFavourites] = useLocalStorage("favourites", {homes: {}, lots: {}})
 
   // Boolean
@@ -170,7 +170,17 @@ export default function ShowInventory(props) {
     return assetType.charAt(0).toUpperCase() + assetType.substring(1)
   }
 
-  const AssetWithModal = withModal(Asset, assetType, getIdKey, favourites, setFavourites, compatibleLots, compatibleHomes, lots, homes)
+  const AssetWithModal = withModal(
+    Asset,
+    assetType,
+    getIdKey,
+    favourites,
+    setFavourites,
+    compatibleLots,
+    compatibleHomes,
+    lots,
+    homes
+  )
 
   return (
     <>
