@@ -1,8 +1,11 @@
 # Lots Homes Explorer
 
 ## TLDR
-- All key requirements are completed, except for:
+- Most key requirements have been fulfilled, except for:
   - [ ] using Redux for global state management
+- Some stretch goals were met too:
+  - [x] Make lots and homes linkable by adding query strings to URL
+  - [x] Persist saved homes and lots in local storage
 - The UX is clean, well-structured, and reasonably close to the design guidelines provided
 - Adding an asset to favourites inside a modal cause a re-render and reset of the scroll bar (I have not found a solution except for a hacky one with refs and storing the scroll bar position)
 - Overall, the code is well documented with frequent commits
@@ -35,7 +38,7 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 |------------------|----------------------------------------------------------------------------------------|
 | NavBar           | navigate to /homes and /lot route                                                      |
 | ShowInventory    | manage business logic for displaying homes and lots assets                             |
-| Home             | display asset-specific home/lot data (name, beds, baths, size, tags, description, img) |
+| Asset            | display asset-specific home/lot data (name, beds, baths, size, tags, description, img) |
 | Modal            | display all lots compatible with homes and vice versa                                  |
 
 ## State Considerations
@@ -67,8 +70,8 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 
 ## Stretch Goals and Next Steps
 - [x] Make lots and homes linkable by adding query strings to URL
+- [x] Persist saved homes and lots in local storage
 - [ ] Improve styling
-- [ ] Persist saved homes and lots in local storage
 - [ ] implement custom success and error messaging (e.g. failure to retrieve a response from the API or attempting to retrieve saved assets when none are saved)
 - [ ] add unit testing
 - [ ] Most consumers' pain-point is not understanding whether a land-plot is cheap or expensive (nobody wants to pay more than they have to). Integrating market pricing / valuation data into the Lot component could alleviate information asymmetry. Perhaps there is a Zoopla API or another pre-existing vendor that utilities public transaction data? This could be used to give users a better idea of how cheap / expensive a particular land plot is in relation to historic local or national data.
