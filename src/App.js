@@ -3,9 +3,9 @@ import React from "react";
 import {Routes, Route} from "react-router-dom";
 
 // import components
-import Navbar from "./components/navbar/navbar";
-import NoMatch from "./components/noMatch/noMatch";
-import ShowInventory from "./components/inventory/showInventory"
+import Navbar from "./views/navbar/navbar";
+import NoMatch from "./views/noMatch/noMatch";
+import ShowInventory from "./views/inventory/showInventory"
 
 // import styles
 import './App.scss';

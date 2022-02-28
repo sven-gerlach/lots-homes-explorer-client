@@ -2,7 +2,7 @@
 import React from "react";
 
 // import components
-import CustomLink from "../links/customLinks";
+import CustomLink from "../../components/links/customLinks";
 
 // import styles
 import "./navbar.scss"

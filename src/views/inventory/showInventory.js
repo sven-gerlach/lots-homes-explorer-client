@@ -3,8 +3,8 @@ import React, {useEffect, useState} from "react";
 import {useLocation } from "react-router-dom";
 
 // import components
-import Asset from "../asset/asset";
-import withModal from "../HOCs/withModal";
+import Asset from "../../components/asset/asset";
+import withModal from "../../components/HOCs/withModal";
 
 // import styles
 import "./showInventory.scss"
