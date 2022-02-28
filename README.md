@@ -69,9 +69,9 @@ _Note: I took the decision to refrain from using front-end styling frameworks li
 7) Hard-coded logic in the modal. The assetId keys are hardcoded. I am sure there is a much better way to solve this without such tight coupling.
 
 ## Stretch Goals and Next Steps
-- [ ] Persist saved homes and lots in local storage
-- [ ] Make lots and homes linkable by adding query strings to URL
+- [x] Make lots and homes linkable by adding query strings to URL
 - [ ] Improve styling
+- [ ] Persist saved homes and lots in local storage
 - [ ] implement custom success and error messaging (e.g. failure to retrieve a response from the API or attempting to retrieve saved assets when none are saved)
 - [ ] add unit testing
 - [ ] Most consumers' pain-point is not understanding whether a land-plot is cheap or expensive (nobody wants to pay more than they have to). Integrating market pricing / valuation data into the Lot component could alleviate information asymmetry. Perhaps there is a Zoopla API or another pre-existing vendor that utilities public transaction data? This could be used to give users a better idea of how cheap / expensive a particular land plot is in relation to historic local or national data.
